@@ -28,7 +28,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'org.apache.httpcomponents:httpclient:4.5.2'
     }
 }
@@ -47,7 +47,8 @@ def nativeBuildSystem = 'bazel'
 // assumes armeabi-v7a. If building with make, changing this will require
 // editing the Makefile as well.
 // The CMake build has only been tested with armeabi-v7a; others may not work.
-def cpuType = 'armeabi-v7a'
+//def cpuType = 'armeabi-v7a'
+def cpuType = 'x86'
 
 // Output directory in the local directory for packaging into the APK.
 def nativeOutDir = 'libs/' + cpuType
@@ -65,7 +66,7 @@ if (nativeBuildSystem == 'makefile') {
 // If building with Bazel, this is the location of the bazel binary.
 // NOTE: Bazel does not yet support building for Android on Windows,
 // so in this case the Makefile build must be used as described above.
-def bazelLocation = '/usr/local/bin/bazel'
+def bazelLocation = '/usr/bin/bazel'
 
 // import DownloadModels task
 project.ext.ASSET_DIR = projectDir.toString() + '/assets'
@@ -75,7 +76,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "27.0.0"
 
     if (nativeBuildSystem == 'cmake') {
         defaultConfig {
@@ -188,4 +189,5 @@ dependencies {
     if (nativeBuildSystem == 'cmake' || nativeBuildSystem == 'none') {
         compile 'org.tensorflow:tensorflow-android:+'
     }
+    //implementation 'com.android.support.constraint:constraint-layout:+'
 }

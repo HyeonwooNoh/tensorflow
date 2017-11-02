@@ -22,3 +22,11 @@ Pods
 Podfile.lock
 *.pbxproj
 *.xcworkspacedata
+
+# added by hyeonwoonoh
+.gradle
+.idea
+tensorflow/examples/android/assets
+tensorflow/examples/android/gradle
+tensorflow/examples/android/gradleBuild
+tensorflow/examples/android/libs
